@@ -40,6 +40,31 @@ app.get('/add', async (req, res) => {
   }
 });
 
+app.post('/add', async (req, res) => {
+  if (req.body.key !== APIKEY) {
+    res.status(400).json({ message: 'unauthorized' });
+  } else {
+    let title = req.body.title || '';
+    let tags = req.body.tags ? req.body.tags.split(',') : [];
+    let description = req.body.description || '';
+    let content = req.body.content || '';
+
+    //if the title has a comma, then split it and make the second part
+    //the description
+    if (title.includes(',')) {
+      description = title.substring(title.indexOf(',') + 2);
+      title = title.substring(0, title.indexOf(','));
+    }
+
+    try {
+      let data = await add({ title, tags, description, content });
+      res.json({ message: 'added', data: data });
+    } catch (err) {
+      res.status(500).json({ message: 'error adding', error: err });
+    }
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
