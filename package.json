@@ -1,0 +1,17 @@
+{
+  "name": "notion-connect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@notionhq/client": "^0.4.13",
+    "@tryfabric/martian": "^1.1.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2"
+  }
+}
