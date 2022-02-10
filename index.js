@@ -32,7 +32,7 @@ app.get('/add', async (req, res) => {
     }
 
     try {
-      //let data = await add({ title, tags, description, content });
+      let data = await add({ title, tags, description, content });
       res.json({ message: 'added', data: data });
     } catch (err) {
       res.status(500).json({ message: 'error adding', error: err });
