@@ -18,7 +18,7 @@ app.get('/add', async (req, res) => {
     res.status(400).json({ message: 'unauthorized' });
   } else {
     const title = req.query.title || '';
-    const tags = (req.query.tags || '').split(',');
+    const tags = req.query.tags ? req.query.tags.split(',') : [];
     const description = req.query.description || '';
     const content = req.query.content || '';
     try {
